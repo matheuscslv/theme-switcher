@@ -11,8 +11,8 @@ import Header from './components/Header';
 const App = () => {
   const [theme, setTheme] = usePeristedState<DefaultTheme>('theme', light);
 
-  const toggleTheme = () => {
-    setTheme(theme.title === 'light' ? dark : light);
+  const toggleTheme = (title: string, font: string) => {
+    setTheme(title === 'dark' ? {...dark, font: {...dark.font, size: font}} : {...light, font: {...light.font, size: font}});
   };
 
   return (

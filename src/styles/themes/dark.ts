@@ -1,9 +1,14 @@
 export default {
   title: 'dark',
 
+  font: {
+    family: 'Roboto',
+    size: '14',
+  },
+
   colors: {
     primary: '#333',
-    secundary: '#C62E65',
+    secundary: '#36B37E',
 
     background: '#222',
     text: '#fff'
