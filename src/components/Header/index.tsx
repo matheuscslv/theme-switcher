@@ -19,16 +19,6 @@ const Header: React.FC<Props> = ({ toggleTheme }) => {
       Hello World
 
       <div style={{ display:"flex", alignItems:'center' }}>
-        <select style={{ marginRight: 20 }} onChange={(e) => {
-          setFont(e.target.value)
-          toggleTheme(title, e.target.value)
-        }}>
-          <option value="14">14</option>
-          <option value="18">18</option>
-          <option value="22">22</option>
-          <option value="26">26</option>
-        </select>
-
         <Switch
           onChange={() => toggleTheme(title === 'dark' ? 'light' : 'dark', font)}
           checked={title === 'dark'}
@@ -40,6 +30,35 @@ const Header: React.FC<Props> = ({ toggleTheme }) => {
           offColor={shade(0.15, colors.primary)}
           onColor={colors.secundary}
         />
+
+        <div style={{ display: "flex", marginLeft: 20 }}>
+          <button
+            onClick={() => {
+              if ((Number(font) - 4) >= 0) {
+                setFont(String(Number(font) - 4));
+                // @ts-ignore
+                toggleTheme(title, String(Number(font) - 4));
+              }
+            }}
+            style={{
+              display: "flex", cursor: 'pointer', outline: 'none', border: 'none', marginRight: 10, alignItems: "center", justifyContent: "center", width: 30, height: 30,
+            }}
+          >
+            <span style={{ marginBottom: 3 }}>A-</span>
+          </button>
+          <button
+            onClick={() => {
+              setFont(String(Number(font) + 4));
+              // @ts-ignore
+              toggleTheme(title, String(Number(font) + 4));
+            }}
+            style={{
+              display: "flex", cursor: 'pointer', outline: 'none', border: 'none', alignItems: "center", justifyContent: "center", width: 30, height: 30,
+            }}
+          >
+            <span style={{ marginBottom: 3 }}>A+</span>
+          </button>
+        </div>
       </div>
     </Container>
   );
