@@ -32,6 +32,30 @@ const Header: React.FC<Props> = ({ toggleTheme }) => {
         />
 
         <div style={{ display: "flex", marginLeft: 20 }}>
+          <button onClick={() => {
+            console.log(window.getSelection()?.toString())
+            const speech = new SpeechSynthesisUtterance();
+            const el = document.body; // or some other element reference
+            const text = el.innerText || el.textContent;
+            speech.text = window.getSelection()?.toString() !== "" ? String(window.getSelection()?.toString()) : text ? String(text) : "";
+            speech.rate = 1;
+            speech.pitch = 10;
+            speech.lang = "pt-BR";
+            speechSynthesis.speak(speech);
+          }} style={{
+            display: "flex", cursor: 'pointer', outline: 'none', border: 'none', marginRight: 10, alignItems: "center", justifyContent: "center", width: 30, height: 30,
+          }}>
+            <span>Play</span>
+          </button>
+
+          <button onClick={() => {
+            speechSynthesis.cancel();
+          }} style={{
+            display: "flex", cursor: 'pointer', outline: 'none', border: 'none', marginRight: 10, alignItems: "center", justifyContent: "center", width: 30, height: 30,
+          }}>
+            <span>Stop</span>
+          </button>
+
           <button
             onClick={() => {
               if ((Number(font) - 4) >= 0) {
